@@ -1,0 +1,14 @@
+.CardSetPlaceholder__mainDiv {
+    margin: 0;
+    padding: 5px;
+    height: 250px;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 5%;
+    box-shadow: 5px 3px 5px 5px #eee;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

@@ -1,0 +1,12 @@
+.ExplorePage__MainDiv {
+    text-align: center;
+    color: black;
+}
+
+.ExplorePage__PlaceholdersDiv {
+    margin: 20px auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    gap: 10px;
+}
