@@ -3,10 +3,37 @@
     color: black;
 }
 
-.ExplorePage__PlaceholdersDiv {
+.ExplorePage__ShowItemsDiv {
     margin: 20px auto;
     width: 80%;
     display: grid;
     grid-template-columns: repeat(4, 25%);
     gap: 10px;
+}
+
+.ExplorePage__ButtonDiv {
+    width: 80%;
+    margin: 5px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.ExplorePage__ButtonDiv button {
+    height: 60px;
+    width: 20%;
+    margin: 0 10px;
+    border: 1px solid #eee;
+    border-radius: 10%;
+    box-sizing: border-box;
+    box-shadow: 3px 4px 5px 5px #ccc;
+    cursor: pointer;
+}
+
+.ExplorePage__ButtonDiv button:focus {
+    outline: 0;
+}
+
+.ExplorePage__ActiveButton {
+    background-color: rgb(93, 199, 93);
+    color: white;
 }

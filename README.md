@@ -1,4 +1,4 @@
-# I_LOVE_FALSHCARDS_MERN_APP
+# I LOVE FALSHCARDS MERN APP
 This is a Full-Stack MERN app which allows to create flashcards, store them in sets for easy review and explore other users sets and cards by popularity or by research.    
 Created by: Annaloro Enrico    
 Date: 09/08/2020
