@@ -13,14 +13,18 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique = true
+        unique: true
     },
     password: {
         type: String,
         required: true,
-    }
-}, { timestamps = true });
+    },
+    cardSets: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "CardSet"
+    }]
+}, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = userSchema;
+module.exports = User;

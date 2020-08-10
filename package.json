@@ -4,7 +4,10 @@
   "description": "A simple flashcard MERN app for creating, storing and reviewing flashcards",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server.js",
+    "client": "cd ./client && npm run start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -17,9 +20,12 @@
   },
   "homepage": "https://github.com/EnricoAnnaloro/i_love_flashcards_MERN_app#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.28"
   }
 }

@@ -21,6 +21,7 @@ const dataBaseInit = require('./utility/databaseInit');
 
 app.use('/api/cardSets', require('./routes/api/cardSets'));
 app.use('/api/cards', require('./routes/api/cards'));
+app.use('/api/users', require('./routes/api/users'));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

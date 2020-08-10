@@ -33,16 +33,20 @@ const ExplorePage = () => {
     }, [onFetchPopularItems]);
 
     let toShow = null;
+    let contentDivClasses = ""
     if (isFetchingLoading) {
         toShow = <p>Loading...</p>
+        contentDivClasses = "ExplorePage__ShowLoadingDiv";
     } else {
         if (showSets) {
+            contentDivClasses = "ExplorePage__ShowSetsDiv";
             toShow = popularSets.map(set => {
                 return (
                     <CardSetPlaceholder key={set.setID} setInfo={set}></CardSetPlaceholder>
                 )
             });
         } else {
+            contentDivClasses = "ExplorePage__ShowCardsDiv";
             toShow = popularCards.map(card => {
                 return (
                     <CardPlaceholder key={Math.random()} cardContent={card}></CardPlaceholder>
@@ -55,10 +59,10 @@ const ExplorePage = () => {
         <div className="ExplorePage__MainDiv">
             <p>This is the explore page</p>
             <div className="ExplorePage__ButtonDiv">
-                <button onClick={() => setShowSets(false)} className={showSets ? null : "ExplorePage__ActiveButton"}>Popular Cards</button>
-                <button onClick={() => setShowSets(true)} className={showSets ? "ExplorePage__ActiveButton" : null}>Popular Sets</button>
+                <p onClick={() => setShowSets(false)} className={showSets ? null : "ExplorePage__ActiveButton"}>Popular Cards</p>
+                <p onClick={() => setShowSets(true)} className={showSets ? "ExplorePage__ActiveButton" : null}>Popular Sets</p>
             </div>
-            <div className="ExplorePage__ShowItemsDiv">
+            <div className={contentDivClasses}>
                 {toShow}
             </div>
         </div>

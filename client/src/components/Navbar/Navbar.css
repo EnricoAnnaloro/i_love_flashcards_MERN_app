@@ -9,7 +9,17 @@
     z-index: 10px;
     display: flex;
     justify-content: space-around;
-    background-color: cornflowerblue;
+    background-color: #a8dadc;
+}
+
+.Navbar__title{
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.Navbar__icon{
+    margin: 0 10px;
 }
 
 .Navbar__contentDiv {
@@ -17,14 +27,28 @@
     width: 50%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
-.Navbar__linkButton {
-    height: 100%;
-    width: 100%;
+.Navbar__NavLinkButton {
+    font-family: inherit;
+    height: 50%;
+    width: 20%;
     margin: 0 10px;
-    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    background-color: #457b9d;
     text-decoration: none;
+    color: white;
     cursor: pointer;
+}
+
+.Navbar__NavLinkButton:hover {
+    background-color: #1d3557;
+}
+
+.Navbar__NavLinkButtonActive {
+    background-color: #1d3557;
 }
