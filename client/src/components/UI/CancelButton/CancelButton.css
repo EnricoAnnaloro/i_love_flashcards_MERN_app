@@ -1,0 +1,37 @@
+.CancelButton {
+    background-color: #f8661e;
+    width: 80px;
+    height: 50px;
+    color: white;
+    outline: none;
+    border: 1px solid #f8661e;
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 11px;
+}
+
+.CancelButton:hover {
+    color: white;
+    background-color: #e63946;
+}
+
+.CancelButton:hover .Loader {
+    color: white;
+}
+
+.CancelButton:disabled {
+    color: #ccc;
+    background-color: #eee;
+    cursor: not-allowed;
+    animation: none;
+}
+
+@media(min-width: 768px) {
+    .SubmitButton {
+        width: 120px;
+        font-size: 13px;
+    }
+}

@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import AuthenticationModal from '../AuthenticationModal/AuthenticationModal';
 
 import './Navbar.css';
 
 const Navbar = props => {
 
-    console.log(props);
+    const [isDisplayAuthModal, setIsDisplayAuthModal] = useState(false);
 
     return (
         <nav className="Navbar__main">
@@ -17,9 +18,9 @@ const Navbar = props => {
             <div className="Navbar__contentDiv">
                 <NavLink to='/' exact className="Navbar__NavLinkButton" activeClassName="Navbar__NavLinkButtonActive">Home</NavLink>
                 <NavLink to='/explore' className="Navbar__NavLinkButton" activeClassName="Navbar__NavLinkButtonActive">Explore</NavLink>
-                <NavLink to='/user' className="Navbar__NavLinkButton" activeClassName="Navbar__NavLinkButtonActive">Login</NavLink>
-
+                <button to='/user' className="Navbar__NavLinkButton" onClick={() => setIsDisplayAuthModal(true)}>Login</button>
             </div>
+            {isDisplayAuthModal ? <AuthenticationModal onCloseModal={() => setIsDisplayAuthModal(false)}></AuthenticationModal> : null}
         </nav>
     );
 }

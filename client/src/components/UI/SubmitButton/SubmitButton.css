@@ -1,0 +1,41 @@
+.SubmitButton {
+    background-color: #457b9d;
+    width: 80px;
+    height: 50px;
+    color: white;
+    outline: none;
+    border: 1px solid #457b9d;
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 11px;
+}
+
+.SubmitButton:hover {
+    color: white;
+    background-color: #1d3557;
+}
+
+.SubmitButton:hover .Loader {
+    color: white;
+}
+
+.SubmitButton:disabled {
+    color: #ccc;
+    background-color: #eee;
+    cursor: not-allowed;
+    animation: none;
+}
+
+.Success {
+    background-color: #457b9d;
+}
+
+@media(min-width: 768px) {
+    .SubmitButton {
+        width: 120px;
+        font-size: 13px;
+    }
+}
