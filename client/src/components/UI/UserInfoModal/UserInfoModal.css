@@ -1,0 +1,48 @@
+.UserInfoModal__mainDiv {
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 1px 1px 1px black;
+    left: 73%;
+    top: 60px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    transition: all 0.5s ease-out;
+}
+
+.UserInfoModal__greeting {
+    width: 80%;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.UserInfoModal__toUserPageDiv {
+    width: 100%;
+    border-top: 1px solid #1d3557;
+    text-align: center;
+    cursor: pointer;
+}
+
+.UserInfoModal__toUserPageDiv:hover {
+    background-color: #ccc;
+}
+
+.UserInfoModal__logoutDiv {
+    width: 100%;
+    border-top: 1px solid #1d3557;
+    border-radius: 0 0 8px 8px; 
+    text-align: center;
+    cursor: pointer;
+}
+
+.UserInfoModal__logoutDiv:hover {
+    background-color: #ccc;
+}

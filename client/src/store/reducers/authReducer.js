@@ -42,7 +42,7 @@ const reducer = (state = initialState, action) => {
                 ...action.payload,
                 isAuthenticated: true,
                 isLoading: false,
-                user: action.payload
+                user: action.payload.user
             }
 
         case USER_LOGIN_FAIL:

@@ -32,13 +32,30 @@
 
 .Navbar__NavLinkButton {
     font-family: inherit;
-    height: 50%;
-    width: 20%;
+    height: 30px;
+    width: 80px;
     margin: 0 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 16px;
+    border: 1px solid #457b9d;
+    background-color: #457b9d;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+.Navbar__UserInfoButton {
+    font-family: inherit;
+    height: 30px;
+    width: 30px;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
     border: 1px solid #457b9d;
     background-color: #457b9d;
     text-decoration: none;

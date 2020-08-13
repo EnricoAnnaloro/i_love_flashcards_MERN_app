@@ -103,7 +103,7 @@ router.post('/login', (req, res) => {
                             res.json({
                                 token: token,
                                 user: {
-                                    id: user._id,
+                                    _id: user._id,
                                     name: user.name,
                                     last_name: user.last_name,
                                     email: user.email,
