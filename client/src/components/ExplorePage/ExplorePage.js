@@ -7,8 +7,11 @@ import { fetchPopularItems } from '../../store/actions/index'
 import './ExplorePage.css';
 
 const ExplorePage = () => {
+
+    // Component State
     const [showSets, setShowSets] = useState(true); // showSets is true when sets are shown and false when cards are shown
 
+    // Redux Import
     const dispatch = useDispatch();
     const onFetchPopularItems = useCallback(() => dispatch(fetchPopularItems()), []);
 

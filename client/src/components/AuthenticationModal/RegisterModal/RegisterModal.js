@@ -1,20 +1,39 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import CancelButton from '../../UI/CancelButton/CancelButton';
 import FormInput from '../../UI/FormInput/FormInput';
+import { registerUser } from '../../../store/actions/index';
+
 import './RegisterModal.css';
 
 const RegisterModal = props => {
 
+    // Component State
     const [registerForm, setRegisterForm] = useState({
+        email: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'email',
+                placeholder: 'Email',
+                userhelp: 'Please enter a valid email'
+            },
+            value: '',
+            validity: {
+                isValid: false,
+                shouldValidate: true,
+                touched: false,
+                required: true,
+                isEmail: true
+            }
+        },
         password: {
             elementType: 'input',
             elementConfig: {
                 type: 'password',
                 placeholder: 'Password',
-                userhelp: 'At least 7 character, with one number and one special character'
+                userhelp: 'At least 7 character, with one number'
             },
             value: '',
             validity: {
@@ -24,7 +43,6 @@ const RegisterModal = props => {
                 required: true,
                 minLength: 7,
                 requiresNum: true,
-                requiresSpecialChar: true,
             }
         },
         name: {
@@ -56,28 +74,22 @@ const RegisterModal = props => {
                 touched: false,
                 required: true
             }
-        },
-        email: {
-            elementType: 'input',
-            elementConfig: {
-                type: 'email',
-                placeholder: 'Email',
-                userhelp: null
-            },
-            value: '',
-            validity: {
-                isValid: false,
-                shouldValidate: true,
-                touched: false,
-                required: true
-            }
-        }
+        }        
     });
 
     const [isFormValid, setIsFormValid] = useState(false);
 
-    // const dispatch = useDispatch();
-    // const onUserRegistration = userRegistrationForm => dispatch(registerUser(userRegistrationForm));
+    // Redux Import
+    const dispatch = useDispatch();
+    const onUserRegistration = userRegistrationInfo => dispatch(registerUser(userRegistrationInfo));
+
+    const errorID = useSelector(state => {
+        return state.errorReducer.id
+    });
+
+    const errorMessage = useSelector(state => {
+        return state.errorReducer.msg
+    });
 
     const checkValidity = (value, rules) => {
         let isValid = true;
@@ -101,6 +113,10 @@ const RegisterModal = props => {
 
         if (rules.requiresSpecialChar && isValid) {
             isValid = /[~`!#$%^&*+=\-[\]\\';,/{}|\\":<>?]/g.test(value);
+        }
+
+        if (rules.isEmail && isValid) {
+            isValid = /@/g.test(value);
         }
 
         return isValid;
@@ -138,16 +154,15 @@ const RegisterModal = props => {
 
     const onRegisterHandler = (event) => {
         event.preventDefault();
-        console.log("Helloooo")
 
         const registrationInfo = {
-            password: registerForm.password.value,
             name: registerForm.name.value,
             last_name: registerForm.last_name.value,
             email: registerForm.email.value,
+            password: registerForm.password.value
         }
 
-        // onUserRegistration(registrationInfo);
+        onUserRegistration(registrationInfo);
     }
 
     const registerFormElements = [];
@@ -158,7 +173,7 @@ const RegisterModal = props => {
         })
     }
 
-    let registerFormDisplayed = (<form onSubmit={onRegisterHandler}>
+    let registerFormDisplayed = (<form className="RegisterModal__formDiv" onSubmit={onRegisterHandler}>
         {registerFormElements.map(element => {
             return (
                 <FormInput
@@ -172,15 +187,22 @@ const RegisterModal = props => {
                     changed={(event) => registerInputChangedHandler(event, element.id)} />
             )
         })}
-        <CancelButton buttonClicked={props.onCloseModal}>Cancel</CancelButton>
-        <SubmitButton disabled={!isFormValid} >Sign Up!</SubmitButton>
+        <div className="RegisterModal__formButtons">
+            <SubmitButton disabled={!isFormValid} >Sign Up!</SubmitButton>
+            <CancelButton buttonClicked={props.onCloseModal} type="button">Cancel</CancelButton>
+        </div>
     </form>);
+
+    const isError = errorID ?
+        <div className="RegisterModal__errorMessage"><p>{errorMessage}</p></div>
+        : null
 
     return (
         <div className="RegisterModal__mainDiv">
-            <p>Register</p>
+            <p className="RegisterModal__title">Register</p>
+            {isError}
             {registerFormDisplayed}
-            <button onClick={props.onSwitchModal}>Login</button>
+            <p className="RegisterModal__linkToLogin">Go back to <span onClick={props.onSwitchModal}>Login Form</span></p>
         </div>
     );
 }

@@ -12,13 +12,13 @@
     background-color: #a8dadc;
 }
 
-.Navbar__title{
+.Navbar__title {
     font-size: 25px;
     display: flex;
     align-items: center;
 }
 
-.Navbar__icon{
+.Navbar__icon {
     margin: 0 10px;
 }
 
@@ -39,16 +39,20 @@
     justify-content: center;
     align-items: center;
     border-radius: 16px;
+    border: 1px solid #457b9d;
     background-color: #457b9d;
     text-decoration: none;
     color: white;
     cursor: pointer;
+    outline: none;
 }
 
 .Navbar__NavLinkButton:hover {
     background-color: #1d3557;
+    border: 1px solid #1d3557;
 }
 
 .Navbar__NavLinkButtonActive {
     background-color: #1d3557;
+    border: 1px solid #1d3557;
 }

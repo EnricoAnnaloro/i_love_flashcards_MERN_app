@@ -8,7 +8,7 @@ const FormInput = (props) => {
     let styleClasses = "FormInputElement";
 
     if (!props.valid && props.shouldValidate && props.touched) {
-        styleClasses = "FormInputElement Invalid"
+        styleClasses = "FormInputElement_Invalid"
         userHelp = props.elementConfig.userhelp ? <label style={{ fontSize: '10px' }}>{props.elementConfig.userhelp}</label> : null;
     }
 

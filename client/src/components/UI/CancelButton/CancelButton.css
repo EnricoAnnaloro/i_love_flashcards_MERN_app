@@ -30,7 +30,7 @@
 }
 
 @media(min-width: 768px) {
-    .SubmitButton {
+    .CancelButton {
         width: 120px;
         font-size: 13px;
     }

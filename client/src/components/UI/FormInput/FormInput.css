@@ -12,6 +12,7 @@
 
 .FormInputElement {
     outline: none;
+    box-sizing: border-box;
     width: 100%;
     display: block;
     border: 1px solid #ccc;
@@ -25,7 +26,13 @@
     background-color: rgba(204, 204, 204, 0.514);
 }
 
-.FormInputElement .Invalid {
+.FormInputElement_Invalid {
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    display: block;
     border: 1px solid red;
     background-color: rgba(255, 213, 209, 0.555);
+    font: inherit;
+    padding: 6px 6px;
 }

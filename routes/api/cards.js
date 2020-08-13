@@ -9,7 +9,6 @@ const CardSet = require('../../models/cardSet.model');
 */
 router.get('/', (req, res) => {
     Card.find({}, (err, allCards) => {
-        console.log(allCards);
         if (err) return res.status(400).json({ msg: "No card was found" });
 
         res.json({ cards: allCards });

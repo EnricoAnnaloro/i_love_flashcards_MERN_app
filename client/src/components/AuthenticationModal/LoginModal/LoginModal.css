@@ -18,3 +18,44 @@
     box-sizing: border-box;
     transition: all 0.5s ease-out;
 }
+
+.LoginModal__formDiv {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.LoginModal__title {
+    font-size: 30px;
+    margin: 0;
+}
+
+.LoginModal__formButtons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.LoginModal__errorMessage {
+    width: 60%;
+    margin: 10px auto;
+    border-radius: 5px;
+    background-color: #f8661e;
+    text-align: center;
+}
+
+.LoginModal__errorMessage p {
+    font-style: italic;
+    margin: 10px;
+}
+
+.LoginModal__linkToLogin {
+    width: 80%;
+    text-align: right;
+}
+
+.LoginModal__linkToLogin span {
+    cursor: pointer;
+    font-style: italic;
+    text-decoration: underline;
+}
