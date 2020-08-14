@@ -61,6 +61,7 @@ export const registerUser = (userRegistrationInfo) => dispatch => {
     const body = JSON.stringify({
         name: userRegistrationInfo.name,
         last_name: userRegistrationInfo.last_name,
+        username: userRegistrationInfo.username,
         email: userRegistrationInfo.email,
         password: userRegistrationInfo.password
     });

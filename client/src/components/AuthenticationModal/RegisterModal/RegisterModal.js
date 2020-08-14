@@ -12,6 +12,22 @@ const RegisterModal = props => {
 
     // Component State
     const [registerForm, setRegisterForm] = useState({
+        username: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Username',
+                userhelp: 'At least 7 characters'
+            },
+            value: '',
+            validity: {
+                isValid: false,
+                shouldValidate: true,
+                touched: false,
+                required: true,
+                minLength: 7
+            }
+        },
         email: {
             elementType: 'input',
             elementConfig: {
@@ -33,7 +49,7 @@ const RegisterModal = props => {
             elementConfig: {
                 type: 'password',
                 placeholder: 'Password',
-                userhelp: 'At least 7 character, with one number'
+                userhelp: 'At least 7 characters, with one number'
             },
             value: '',
             validity: {
@@ -156,6 +172,7 @@ const RegisterModal = props => {
         event.preventDefault();
 
         const registrationInfo = {
+            username: registerForm.username.value,
             name: registerForm.name.value,
             last_name: registerForm.last_name.value,
             email: registerForm.email.value,

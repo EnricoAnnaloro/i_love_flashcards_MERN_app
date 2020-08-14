@@ -1,6 +1,7 @@
 Main Concept - DONE
 Auth - DONE
 UserInfo Modal - DONE
+Add username to users - DONE
 User Profile
 Creating Sets
 Creating Cards
@@ -8,3 +9,5 @@ Adding Cards to Set
 Cards ranking systems
 Sets ranking systems
 Landing page
+Implement login with google
+Implementing PRO version for money

@@ -12,60 +12,73 @@ const User = require('../../models/user.model.js');
     ACCESS: Public
 */
 router.post('/register', (req, res) => {
-    const { name, last_name, email, password } = req.body;
+    const { name, last_name, username, email, password } = req.body;
 
     // Simple validation 
-    if (!name || !last_name || !email || !password) {
+    if (!name || !last_name || !username || !email || !password) {
         return res.status(400).json({ msg: 'Please enter all fields' });
     }
 
-    // If all fields are valid we check if email is unique
-    User.findOne({ email: email })
-        .then(user => {
-            if (user) return res.status(400).json({ msg: 'Email alredy registered' });
+    // Check if username is unique
+    User.findOne({ username: username })
+        .then(foundUsernameUser => {
+            if (foundUsernameUser) return res.status(400).json({ msg: 'Username alredy registered' });
+            // If all fields are valid we check if email is unique
+            User.findOne({ email: email })
+                .then(user => {
+                    if (user) return res.status(400).json({ msg: 'Email alredy registered' });
 
-            // If other email exists we create a new user
-            const newUser = new User({
-                name: name,
-                last_name: last_name,
-                email: email,
-                password: password
-            })
+                    // If other email exists we create a new user
+                    const newUser = new User({
+                        name: name,
+                        last_name: last_name,
+                        username: username,
+                        email: email,
+                        password: password
+                    })
 
-            // Create hash for storing secure password
-            bcrypt.genSalt(10, (error, salt) => {
-                if (error) throw error;
-                bcrypt.hash(newUser.password, salt, (error, hash) => {
-                    if (error) throw error;
+                    // Create hash for storing secure password
+                    bcrypt.genSalt(10, (error, salt) => {
+                        if (error) throw error;
+                        bcrypt.hash(newUser.password, salt, (error, hash) => {
+                            if (error) throw error;
 
-                    // If no error, assign hash to password and register user
-                    newUser.password = hash;
-                    newUser.save()
-                        .then(user => {
+                            // If no error, assign hash to password and register user
+                            newUser.password = hash;
+                            newUser.save()
+                                .then(user => {
 
-                            // Working with json web token
-                            jwt.sign(
-                                { id: user._id },
-                                process.env.JWT_PASS,
-                                { expiresIn: 3600 },
-                                (error, token) => {
-                                    if (error) throw error;
+                                    // Working with json web token
+                                    jwt.sign(
+                                        { id: user._id },
+                                        process.env.JWT_PASS,
+                                        { expiresIn: 3600 },
+                                        (error, token) => {
+                                            if (error) throw error;
 
-                                    res.json({
-                                        token: token,
-                                        user: {
-                                            id: user._id,
-                                            name: user.name,
-                                            last_name: user.last_name,
-                                            email: user.email,
+                                            res.json({
+                                                token: token,
+                                                user: {
+                                                    _id: user._id,
+                                                    username: user.username,
+                                                    name: user.name,
+                                                    last_name: user.last_name,
+                                                    email: user.email,
+                                                }
+                                            })
                                         }
-                                    })
-                                }
-                            )
+                                    )
+                                })
                         })
+                    })
                 })
-            })
+                .catch(error => {
+                    return res.status(400).json({ msg: 'Unexpected error while registering user' });
+                });
         })
+        .catch(error => {
+            return res.status(400).json({ msg: 'Unexpected error while registering user' });
+        });
 })
 
 /*
@@ -104,6 +117,7 @@ router.post('/login', (req, res) => {
                                 token: token,
                                 user: {
                                     _id: user._id,
+                                    username: user.username,
                                     name: user.name,
                                     last_name: user.last_name,
                                     email: user.email,

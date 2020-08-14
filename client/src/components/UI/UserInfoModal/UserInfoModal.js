@@ -15,20 +15,14 @@ const UserInfoModal = props => {
 
     // Redux State
     const userName = useSelector(state => {
-        return state.authReducer.user.name
+        return state.authReducer.user.username
     });
-
-    const userID = useSelector(state => {
-        return state.authReducer.user._id
-    });
-
-    console.log(userID);
 
     return (
         <Fragment>
             <div className="UserInfoModal__mainDiv">
                 <p className="UserInfoModal__greeting">Welcome {userName}!</p>
-                <div className="UserInfoModal__toUserPageDiv" onClick={() => history.push(`/user/${userID}`)}>
+                <div className="UserInfoModal__toUserPageDiv" onClick={() => history.push(`/user/${userName}`)}>
                     <p>Your Page</p>
                 </div>
                 <div className="UserInfoModal__logoutDiv" onClick={props.onLogoutHandler}>
