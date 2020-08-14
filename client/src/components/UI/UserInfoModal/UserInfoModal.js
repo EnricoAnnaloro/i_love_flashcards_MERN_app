@@ -18,11 +18,16 @@ const UserInfoModal = props => {
         return state.authReducer.user.username
     });
 
+    const moveToUserPage = () => {
+        history.push(`/user/${userName}`);
+        props.toggleUserInfoModalHandler();
+    }
+
     return (
         <Fragment>
             <div className="UserInfoModal__mainDiv">
                 <p className="UserInfoModal__greeting">Welcome {userName}!</p>
-                <div className="UserInfoModal__toUserPageDiv" onClick={() => history.push(`/user/${userName}`)}>
+                <div className="UserInfoModal__toUserPageDiv" onClick={moveToUserPage}>
                     <p>Your Page</p>
                 </div>
                 <div className="UserInfoModal__logoutDiv" onClick={props.onLogoutHandler}>

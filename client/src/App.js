@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
-import { Route } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { Route } from 'react-router-dom';
 
+import Navbar from './components/Navbar/Navbar';
 import LandingPage from './components/LandingPage/LandingPage';
 import ExplorePage from './components/ExplorePage/ExplorePage';
-import Navbar from './components/Navbar/Navbar';
+import UserPage from './components/UserPage/UserPage';
 import './App.css';
 
 import store from './store/store';
@@ -19,12 +20,9 @@ function App() {
     <div className="App">
       <Navbar></Navbar>
       <div className="App__Content">
-        <Route path="/explore">
-          <ExplorePage></ExplorePage>
-        </Route>
-        <Route path="/" exact>
-          <LandingPage></LandingPage>
-        </Route>
+        <Route path="/user/:username"><UserPage /></Route>
+        <Route path="/explore"><ExplorePage /></Route>
+        <Route path="/" exact><LandingPage /></Route>
       </div>
     </div>
   );

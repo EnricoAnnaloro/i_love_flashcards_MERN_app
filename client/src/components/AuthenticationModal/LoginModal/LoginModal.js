@@ -5,6 +5,8 @@ import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import CancelButton from '../../UI/CancelButton/CancelButton';
 import FormInput from '../../UI/FormInput/FormInput';
 import { loginUser } from '../../../store/actions/index';
+import { checkValidity } from '../../../utilityFunctions/modalUtility';
+
 import './LoginModal.css';
 
 const LoginModal = props => {
@@ -59,37 +61,6 @@ const LoginModal = props => {
     const errorMessage = useSelector(state => {
         return state.errorReducer.msg
     });
-
-    const checkValidity = (value, rules) => {
-        let isValid = true;
-
-        if (rules.required && isValid) {
-            isValid = value.trim() !== '';
-        }
-
-        if (rules.minLength && isValid) {
-            isValid = value.length >= rules.minLength;
-        }
-
-
-        if (rules.maxLength && isValid) {
-            isValid = value.length <= rules.maxLength;
-        }
-
-        if (rules.requiresNum && isValid) {
-            isValid = /[1234567890]/g.test(value);
-        }
-
-        if (rules.requiresSpecialChar && isValid) {
-            isValid = /[~`!#$%^&*+=\-[\]\\';,/{}|\\":<>?]/g.test(value);
-        }
-
-        if (rules.isEmail && isValid) {
-            isValid = /@/g.test(value);
-        }
-
-        return isValid;
-    }
 
     const loginInputChangedHandler = (event, formElementID) => {
 

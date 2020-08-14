@@ -64,6 +64,7 @@ router.post('/register', (req, res) => {
                                                     name: user.name,
                                                     last_name: user.last_name,
                                                     email: user.email,
+                                                    cardSets: user.cardSets
                                                 }
                                             })
                                         }
@@ -121,6 +122,7 @@ router.post('/login', (req, res) => {
                                     name: user.name,
                                     last_name: user.last_name,
                                     email: user.email,
+                                    cardSets: user.cardSets
                                 }
                             })
                         }
