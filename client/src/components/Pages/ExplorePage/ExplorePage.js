@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CardPlaceholder from '../CardPlaceholder/CardPlaceholder';
-import CardSetPlaceholder from '../CardSetPlaceholder/CardSetPlaceholder';
-import { fetchPopularItems } from '../../store/actions/index'
+import CardPlaceholder from '../../CardPlaceholder/CardPlaceholder';
+import CardSetPlaceholder from '../../CardSetPlaceholder/CardSetPlaceholder';
+import { fetchPopularItems } from '../../../store/actions/index';
 import './ExplorePage.css';
 
 const ExplorePage = () => {
@@ -60,7 +60,6 @@ const ExplorePage = () => {
 
     return (
         <div className="ExplorePage__MainDiv">
-            <p>This is the explore page</p>
             <div className="ExplorePage__ButtonDiv">
                 <p onClick={() => setShowSets(false)} className={showSets ? null : "ExplorePage__ActiveButton"}>Popular Cards</p>
                 <p onClick={() => setShowSets(true)} className={showSets ? "ExplorePage__ActiveButton" : null}>Popular Sets</p>

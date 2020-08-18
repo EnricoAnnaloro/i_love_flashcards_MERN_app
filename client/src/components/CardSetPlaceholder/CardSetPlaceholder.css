@@ -1,8 +1,8 @@
 .CardSetPlaceholder__mainDiv {
     margin: 0 auto;
     padding: 5px;
-    height: 50px;
-    width: 80%;
+    height: 120px;
+    width: 100%;
     border: 1px solid #ccc;
     border-radius: 16px;
     box-shadow: 5px 3px 5px 5px #eee;
@@ -13,6 +13,44 @@
     align-items: center;
 }
 
-.CardSetPlaceholder__mainDiv p{
+.CardSetPlaceholder__titlesDiv {
     width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.CardSetPlaceholder__infoDiv {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.CardSetPlaceholder__mainDiv p {
+    margin: 0;
+}
+
+@media(min-width: 768px) {
+    .CardSetPlaceholder__mainDiv {
+        flex-direction: column;
+    }
+    .CardSetPlaceholder__titlesDiv {
+        flex-direction: row;
+        width: 100%;
+    }
+    .CardSetPlaceholder__titlesDiv p {
+        width: 30%;
+    }
+    .CardSetPlaceholder__infoDiv {
+        flex-direction: row;
+        width: 100%;
+    }
+    .CardSetPlaceholder__infoDiv p {
+        width: 30%;
+    }
 }

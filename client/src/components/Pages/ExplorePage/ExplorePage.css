@@ -1,4 +1,5 @@
 .ExplorePage__MainDiv {
+    padding: 10px 0;
     text-align: center;
     color: black;
 }
@@ -6,9 +7,11 @@
 .ExplorePage__ShowCardsDiv {
     margin: 20px auto;
     width: 80%;
-    display: grid;
-    grid-template-columns: repeat(4, 25%);
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
 }
 
 .ExplorePage__ShowSetsDiv {
@@ -24,15 +27,17 @@
     width: 80%;
     margin: 5px auto;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .ExplorePage__ButtonDiv p {
     font-family: inherit;
     font-size: 18px;
     height: 60px;
-    width: 20%;
-    margin: 0 10px;
+    width: 80%;
+    margin: 10px 10px;
     border: 1px solid #eee;
     border-radius: 16px;
     box-sizing: border-box;
@@ -51,4 +56,28 @@
     background-color: #457b9d;
     border: 1px solid #457b9d;
     color: white;
+}
+
+@media(min-width: 768px) {
+    .ExplorePage__ButtonDiv {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .ExplorePage__ButtonDiv p {
+        width: 20%;
+        margin: 0 10px;
+    }
+    .ExplorePage__ShowCardsDiv {
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+        gap: 10px;
+    }
+}
+
+@media(min-width: 1024px) {
+    .ExplorePage__ShowCardsDiv {
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        gap: 10px;
+    }
 }

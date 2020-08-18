@@ -2,14 +2,15 @@
     position: fixed;
     z-index: 500;
     background-color: white;
-    width: 40%;
-    height: 60%;
+    width: 80%;
+    height: 500px;
     border: 1px solid #ccc;
     border-radius: 30px;
     box-shadow: 1px 1px 1px black;
     padding: 16px;
-    left: 30%;
     top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
     color: black;
     display: flex;
     flex-direction: column;
@@ -58,4 +59,10 @@
     cursor: pointer;
     font-style: italic;
     text-decoration: underline;
+}
+
+@media(min-width: 768px) {
+    .LoginModal__mainDiv {
+        width: 40%;
+    }
 }

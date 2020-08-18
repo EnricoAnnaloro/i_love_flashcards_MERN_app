@@ -72,10 +72,13 @@ export const registerUser = (userRegistrationInfo) => dispatch => {
 
     // Make the axios request for registration
     axios.post('http://localHost:5000/api/users/register', body, config)
-        .then(response => dispatch({    // Recall in './routes/api/users.js' the route returns the token and userdata as response
-            type: USER_REGISTER_SUCCESS,
-            payload: response.data
-        }))
+        .then(response => {
+            dispatch({    // Recall in './routes/api/users.js' the route returns the token and userdata as response
+                type: USER_REGISTER_SUCCESS,
+                payload: response.data
+            });
+            dispatch(fetchUserSets());
+        })
         .catch(error => {
             dispatch(returnErrors(error.response.data.msg, error.response.status, 'REGISTER_FAIL'));
             dispatch({ type: USER_REGISTER_FAIL });
@@ -100,10 +103,13 @@ export const loginUser = (userLoginInfo) => dispatch => {
 
     // Make the axios request for registration
     axios.post('http://localHost:5000/api/users/login', body, config)
-        .then(response => dispatch({    // Recall in './routes/api/users.js' the route returns the token and userdata as response
-            type: USER_LOGIN_SUCCESS,
-            payload: response.data
-        }))
+        .then(response => {
+            dispatch({    // Recall in './routes/api/users.js' the route returns the token and userdata as response
+                type: USER_LOGIN_SUCCESS,
+                payload: response.data
+            });
+            dispatch(fetchUserSets());
+        })
         .catch(error => {
             dispatch(returnErrors(error.response.data.msg, error.response.status, 'LOGIN_FAIL'));
             dispatch({ type: USER_LOGIN_FAIL });

@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-import store from '../../store/store';
-import { loadUser } from '../../store/actions/index';
-import CreateNewSetModal from '../UI/CreateNewSetModal/CreateNewSetModal';
-import UserCardSetPlaceholder from '../UserCardSetPlaceholder/UserCardSetPlaceholder';
+import store from '../../../store/store';
+import { loadUser } from '../../../store/actions/index';
+import CreateNewSetModal from '../../UI/CreateNewSetModal/CreateNewSetModal';
+import UserCardSetPlaceholder from '../../UserCardSetPlaceholder/UserCardSetPlaceholder';
 import './UserPage.css';
 
 const UserPage = () => {
@@ -39,7 +39,6 @@ const UserPage = () => {
                 <div className="UserPage__userInfoDiv">
                     <div className="UserPage__userImage"><FontAwesomeIcon icon={faUser} size="2x" className="Navbar__icon" /></div>
                     <p className="UserPage__userInfo">{userInfo.username}</p>                    
-                    <p className="UserPage__userInfo">{userInfo.name} {userInfo.last_name}</p>
                     <div className="UserPage__stats">
                         <div>
                             <p>Card Sets</p>
@@ -61,7 +60,7 @@ const UserPage = () => {
 
                             return (
                                 <div>
-                                    <UserCardSetPlaceholder key={set._id} setInfo={set} />
+                                    <UserCardSetPlaceholder key={set._id} setInfo={set} clicked={() => history.push('/cardSet/' + set._id)} />
                                 </div>
                             )
                         })}

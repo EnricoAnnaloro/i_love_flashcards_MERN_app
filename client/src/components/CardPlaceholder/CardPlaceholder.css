@@ -1,8 +1,8 @@
-.Card__mainDiv{
-    margin: 0;
+.Card__mainDiv {
+    margin: 10px auto;
     padding: 5px;
     height: 250px;
-    width: 80%;
+    width: 60%;
     border: 1px solid #ccc;
     border-radius: 12px;
     box-shadow: 5px 3px 5px 5px #eee;
@@ -11,4 +11,17 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+@media(min-width: 768px) {
+    .Card__mainDiv {
+        width: 60%;
+    }
+}
+
+@media(min-width: 1024px) {
+    .Card__mainDiv {
+        width: 80%;
+        margin: 0 auto;
+    }
 }

@@ -3,9 +3,7 @@ import './BackdropModal.css';
 
 const BackdropModal = props => {
     return (
-        <div className="BackdropModal__mainDiv" onClick={props.backdropClicked}>
-            
-        </div>
+        <div className="BackdropModal__mainDiv" onClick={props.backdropClicked} />            
     );
 }
 
