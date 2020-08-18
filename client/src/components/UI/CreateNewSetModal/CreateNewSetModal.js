@@ -1,5 +1,8 @@
 import React, { useState, Fragment } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
+import { fetchUserSets } from '../../../store/actions/index';
 import { checkValidity } from '../../../utilityFunctions/modalUtility';
 import BackdropModal from '../BackdropModal/BackdropModal';
 import FormInput from '../FormInput/FormInput';
@@ -10,6 +13,14 @@ import './CreateNewSetModal.css';
 
 
 const CreateNewSet = props => {
+
+    // Redux imports
+    const dispatch = useDispatch();
+    const onFetchUserSets = () => dispatch(fetchUserSets());
+
+    const userID = useSelector(state => {
+        return state.authReducer.user._id;
+    });
 
     const [createSetForm, setCreateSetForm] = useState({
         setTitle: {
@@ -76,13 +87,19 @@ const CreateNewSet = props => {
     const onCreateSetHandler = (event) => {
         event.preventDefault();
 
-        const newSetInfo = {
+        const body = {
             setTitle: createSetForm.setTitle.value,
-            setDescription: createSetForm.setDescription.value
+            setDescription: createSetForm.setDescription.value,
+            userID: userID
         }
 
-        console.log("Create Set")
-        // onUserRegistration(registrationInfo);
+        axios.post('http://localHost:5000/api/cardSets', body)
+            .then(response => {
+                console.log(response);
+                onFetchUserSets();
+                props.onCloseModal();
+            })
+            .catch(error => console.log(error));
     }
 
     const createSetFormElements = [];

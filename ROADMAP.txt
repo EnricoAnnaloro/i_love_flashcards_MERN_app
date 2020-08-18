@@ -3,7 +3,8 @@ Auth - DONE
 UserInfo Modal - DONE
 Add username to users - DONE
 User Profile - TO FINISH
-Creating Sets - ON GOING (Add axios post request for newSet Form)
+Creating Sets - DONE
+Create Sets Page
 Creating Cards
 Adding Cards to Set
 Cards ranking systems

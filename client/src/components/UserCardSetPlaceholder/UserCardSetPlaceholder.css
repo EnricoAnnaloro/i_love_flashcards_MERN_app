@@ -1,0 +1,18 @@
+.UserCardSetPlaceholder__mainDiv {
+    margin: 10px auto;
+    padding: 5px;
+    height: 50px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    box-shadow: 5px 3px 5px 5px #eee;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.UserCardSetPlaceholder__mainDiv p {
+    width: 30%;
+}

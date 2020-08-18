@@ -9,6 +9,7 @@
 
 .UserPage__userInfoDiv {
     width: 30%;
+    height: 300px;
     padding: 20px 20px;
     box-sizing: border-box;
     display: flex;
@@ -99,4 +100,8 @@
 .UserPage__createSetButton:hover {
     background-color: #457b9d;
     color: white;
+}
+
+.UserPage__cardSets {
+    width: 80%;
 }

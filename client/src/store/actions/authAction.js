@@ -11,7 +11,8 @@ import {
     USER_REGISTER_SUCCESS
 } from '../actions/actionTypes';
 
-import { returnErrors, clearErrors } from './index';
+import { returnErrors } from './index';
+import { fetchUserSets } from './cardSetActions'
 
 // Check token and load user
 export const loadUser = () => (dispatch, getState) => {
@@ -35,10 +36,13 @@ export const loadUser = () => (dispatch, getState) => {
 
     // Fetch user
     axios.get("http://localHost:5000/api/users", config)
-        .then(response => dispatch({
-            type: USER_LOADED,
-            payload: response.data
-        }))
+        .then(response => {
+            dispatch({
+                type: USER_LOADED,
+                payload: response.data
+            });
+            dispatch(fetchUserSets());
+        })
         .catch(error => {
             dispatch(returnErrors(error.response.data.msg, error.response.status));
             dispatch({

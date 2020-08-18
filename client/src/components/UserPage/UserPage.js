@@ -7,6 +7,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import store from '../../store/store';
 import { loadUser } from '../../store/actions/index';
 import CreateNewSetModal from '../UI/CreateNewSetModal/CreateNewSetModal';
+import UserCardSetPlaceholder from '../UserCardSetPlaceholder/UserCardSetPlaceholder';
 import './UserPage.css';
 
 const UserPage = () => {
@@ -15,12 +16,18 @@ const UserPage = () => {
     const [shouldDisplaySetModal, setshouldDisplaySetModal] = useState(false); 
 
     // Redux Import 
+    const dispatch = useDispatch();
+
     const userInfo = useSelector(state => {
         return state.authReducer.user
     });
 
+    const userSets = useSelector(state => {
+        return state.cardSetReducer.userSets
+    });
+
     useEffect(() => {
-        store.dispatch(loadUser())
+        store.dispatch(loadUser());
     }, []);
 
     const history = useHistory();
@@ -47,13 +54,14 @@ const UserPage = () => {
                 <div className="UserPage__contentDiv">
                     <h2>Your Collections</h2>
                     <div className="UserPage__createSetButton" onClick={() => setshouldDisplaySetModal(true)}>
-                        <p>{userInfo.cardSets.length === 0 ? "Create your first set" : "Create a new set"}</p>
+                        <p>{userSets.length === 0 ? "Create your first set" : "Create a new set"}</p>
                     </div>
                     <div className="UserPage__cardSets">
-                        {userInfo.cardSets.map(set => {
+                        {userSets.map(set => {
+
                             return (
                                 <div>
-                                    set._id
+                                    <UserCardSetPlaceholder key={set._id} setInfo={set} />
                                 </div>
                             )
                         })}

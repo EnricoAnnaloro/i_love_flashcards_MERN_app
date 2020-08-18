@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const CardSet = require('../../models/cardSet.model.js');
+const User = require('../../models/user.model.js');
+const { set } = require('mongoose');
 
 /*
     API ROUTE: /api/cardSets
@@ -30,19 +32,31 @@ router.get('/', (req, res) => {
     DESC: Import a single card set
     ACCESS: Private (to add)
 */
-router.post('/', (req, res) => {
-    const setName = req.body.setName;
+router.post('/', async (req, res) => {
+    const name = req.body.setTitle;
+    const description = req.body.setDescription;
+    const userID = req.body.userID;
 
     const newCardSetData = {
-        name: setName,
+        name: name,
+        description: description,
         cards: []
     }
 
     const newCardSet = new CardSet(newCardSetData);
 
-    newCardSet.save()
-        .then(() => res.json({ msg: "New cardSet added succesfully" }))
-        .catch(error => res.status(400).json({ msg: error }))
+    const savedCardSet = await newCardSet.save();
+    if (!savedCardSet) return res.status(404).json({ msg: "There was an error accessing database" });
+
+    let user = await User.findById(userID);
+    if (!user) return res.status(404).json({ msg: "There was an error finding your data" });
+
+    await user.cardSets.push(newCardSet._id);
+    const savedUser = await user.save();
+    if (!savedUser) return res.status(404).json({ msg: "There was an error accessing database" });
+
+    // Successfull add
+    return res.json({ msg: null });
 })
 
 /*
@@ -57,5 +71,29 @@ router.delete('/:id', (req, res) => {
         .catch(error => res.status(404).json({ msg: error }));
 });
 
+/*
+    API ROUTE: /api/cardSets/userCards/:userID
+    DESC: Return an array with all the cardSets of a user
+    ACCESS: Public
+*/
+router.get('/userCards/:userID', async (req, res) => {
+
+    const userID = req.params.userID;
+
+    const user = await User.findById(userID);
+    const setsIDs = [...user.cardSets];
+    let cardSetsToReturn = [];
+
+    for (let index in setsIDs) {
+        await CardSet.findById(setsIDs[index])
+            .then(foundSet => {
+                cardSetsToReturn.push(foundSet);
+            })
+            .catch(error => console.log(error));
+    }
+
+    return res.json({ userSets: cardSetsToReturn });
+
+});
 
 module.exports = router;
