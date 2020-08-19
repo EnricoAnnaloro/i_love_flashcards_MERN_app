@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../axiosInstances/axios-api-setup';
 
 import {
     USER_AUTH_ERROR,
@@ -35,7 +35,7 @@ export const loadUser = () => (dispatch, getState) => {
     }
 
     // Fetch user
-    axios.get("http://localHost:5000/api/users", config)
+    axios.get("/api/users", config)
         .then(response => {
             dispatch({
                 type: USER_LOADED,
@@ -71,7 +71,7 @@ export const registerUser = (userRegistrationInfo) => dispatch => {
     });
 
     // Make the axios request for registration
-    axios.post('http://localHost:5000/api/users/register', body, config)
+    axios.post('/api/users/register', body, config)
         .then(response => {
             dispatch({    // Recall in './routes/api/users.js' the route returns the token and userdata as response
                 type: USER_REGISTER_SUCCESS,
@@ -102,7 +102,7 @@ export const loginUser = (userLoginInfo) => dispatch => {
     });
 
     // Make the axios request for registration
-    axios.post('http://localHost:5000/api/users/login', body, config)
+    axios.post('/api/users/login', body, config)
         .then(response => {
             dispatch({    // Recall in './routes/api/users.js' the route returns the token and userdata as response
                 type: USER_LOGIN_SUCCESS,

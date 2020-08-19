@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <Navbar></Navbar>
       <div className="App__Content">
-        <Route path="/cardSet/:setID"><CardSetPage /></Route>
+        <Route path="/cardSets/:setID"><CardSetPage /></Route>
         <Route path="/user/:username"><UserPage /></Route>
         <Route path="/explore"><ExplorePage /></Route>
         <Route path="/" exact><LandingPage /></Route>

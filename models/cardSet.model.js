@@ -14,6 +14,16 @@ const cardSetSchema = new Schema({
     popularity: {
         type: Number,
         default: 0
+    },
+    author: {
+        authorUsername: {
+            type: String,
+            required: true
+        },
+        authorID: {
+            type: String,
+            required: true
+        }
     }
 }, { timestamps: true });
 

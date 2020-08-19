@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faUser } from '@fortawesome/free-solid-svg-icons'; 
+import { faHeart } from '@fortawesome/free-solid-svg-icons'; 
 
 import BackdropModal from '../../UI/BackdropModal/BackdropModal';
 import './SideDrawer.css';

@@ -58,9 +58,10 @@ const UserPage = () => {
                     <div className="UserPage__cardSets">
                         {userSets.map(set => {
 
+                            console.log(set._id);
                             return (
                                 <div>
-                                    <UserCardSetPlaceholder key={set._id} setInfo={set} clicked={() => history.push('/cardSet/' + set._id)} />
+                                    <UserCardSetPlaceholder key={set._id} setInfo={set} clicked={() => history.push('/cardSets/' + set._id)} />
                                 </div>
                             )
                         })}

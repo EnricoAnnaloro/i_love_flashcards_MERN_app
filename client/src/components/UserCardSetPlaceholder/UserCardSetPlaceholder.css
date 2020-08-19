@@ -46,6 +46,8 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .UserCardSetPlaceholder__mainDiv p {

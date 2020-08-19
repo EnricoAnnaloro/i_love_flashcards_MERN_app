@@ -17,7 +17,7 @@ const Navbar = props => {
 
     const [isDisplayAuthModal, setIsDisplayAuthModal] = useState(false);
     const [isDisplayUserInfoModal, setIsDisplayUserInfoModal] = useState(false);
-    const [isDisplaySideDrawer, setIsDisplaySideDrawer] = useState(true);
+    const [isDisplaySideDrawer, setIsDisplaySideDrawer] = useState(false);
 
     const history = useHistory();
 

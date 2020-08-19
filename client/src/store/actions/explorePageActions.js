@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../axiosInstances/axios-api-setup';
 import {
     FETCH_POPULAR_ITEMS,
     FETCH_POPULAR_ITEMS_START,
@@ -30,21 +30,25 @@ export const setUpPopularItems = (popularCards, popularSets) => {
 
 export const fetchPopularItems = () => dispatch => {
     dispatch(fetchPopularItemsStart());
-    const cardsApiURL = "http://localHost:5000/api/cards";
-    const cardSetsApiURL = "http://localHost:5000/api/cardSets";
+    const cardsApiURL = "/api/cards";
+    const cardSetsApiURL = "/api/cardSets";
 
-    const cardsApiRequest = axios.get(cardsApiURL);
-    const cardSetsApiRequest = axios.get(cardSetsApiURL);
+    axios.get(cardsApiURL)
+        .then(cardRes => {
+            const cardsApiResponse = cardRes;
 
-    axios.all([cardsApiRequest, cardSetsApiRequest])
-        .then(axios.spread((...responses) => {
-            const cardsApiResponse = responses[0];
-            const cardSetsApiResponse = responses[1];
+            axios.get(cardSetsApiURL)
+                .then(setsRes => {
+                    const cardSetsApiResponse = setsRes;
 
-            // Add here the logic for displaying only the first 100 most popular ones in order
+                    // Add here the logic for displaying only the first 100 most popular ones in order
 
-            dispatch(setUpPopularItems(cardsApiResponse.data, cardSetsApiResponse.data));
-        }))
+                    dispatch(setUpPopularItems(cardsApiResponse.data, cardSetsApiResponse.data));
+                })
+                .catch(error => {
+                    dispatch(fetchPopularItemsFailed(error));
+                })
+        })
         .catch(error => {
             dispatch(fetchPopularItemsFailed(error));
         })

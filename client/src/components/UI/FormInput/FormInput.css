@@ -6,6 +6,7 @@
 
 .FormInput__Label {
     font-weight: bold;
+    font-size: 12px;
     display: block;
     margin-bottom: 8px;
 }

@@ -36,10 +36,15 @@ router.post('/', async (req, res) => {
     const name = req.body.setTitle;
     const description = req.body.setDescription;
     const userID = req.body.userID;
+    const author = req.body.author;
 
     const newCardSetData = {
         name: name,
         description: description,
+        author: {
+            authorUsername: author,
+            authorID: userID
+        },
         cards: []
     }
 
@@ -72,28 +77,21 @@ router.delete('/:id', (req, res) => {
 });
 
 /*
-    API ROUTE: /api/cardSets/userCards/:userID
-    DESC: Return an array with all the cardSets of a user
-    ACCESS: Public
+    API ROUTE: /api/cardSets/:id
+    DESC: Find a single card set and return its content
+    ACCESS: Private (to add)
 */
-router.get('/userCards/:userID', async (req, res) => {
+router.get('/:id', (req, res) => {
+    const setID = req.params.id;
+    console.log("setID", setID)
 
-    const userID = req.params.userID;
-
-    const user = await User.findById(userID);
-    const setsIDs = [...user.cardSets];
-    let cardSetsToReturn = [];
-
-    for (let index in setsIDs) {
-        await CardSet.findById(setsIDs[index])
-            .then(foundSet => {
-                cardSetsToReturn.push(foundSet);
-            })
-            .catch(error => console.log(error));
-    }
-
-    return res.json({ userSets: cardSetsToReturn });
-
-});
+    CardSet.findById(setID)
+        .then(foundSet => {
+            return res.json({ set: foundSet });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
 
 module.exports = router;

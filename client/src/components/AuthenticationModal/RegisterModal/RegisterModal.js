@@ -5,7 +5,6 @@ import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import CancelButton from '../../UI/CancelButton/CancelButton';
 import FormInput from '../../UI/FormInput/FormInput';
 import { registerUser } from '../../../store/actions/index';
-import { checkValidity } from '../../../utilityFunctions/modalUtility';
 
 import './RegisterModal.css';
 
@@ -62,6 +61,22 @@ const RegisterModal = props => {
                 requiresNum: true,
             }
         },
+        confirmPassword: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'password',
+                placeholder: 'Confirm Password',
+                userhelp: 'Must check with above password'
+            },
+            value: '',
+            validity: {
+                isValid: false,
+                shouldValidate: true,
+                touched: false,
+                required: true,
+                isPasswordCheck: true
+            }
+        },
         name: {
             elementType: 'input',
             elementConfig: {
@@ -107,6 +122,41 @@ const RegisterModal = props => {
     const errorMessage = useSelector(state => {
         return state.errorReducer.msg
     });
+
+    const checkValidity = (value, rules) => {
+        let isValid = true;
+
+        if (rules.required && isValid) {
+            isValid = value.trim() !== '';
+        }
+
+        if (rules.minLength && isValid) {
+            isValid = value.length >= rules.minLength;
+        }
+
+
+        if (rules.maxLength && isValid) {
+            isValid = value.length <= rules.maxLength;
+        }
+
+        if (rules.requiresNum && isValid) {
+            isValid = /[1234567890]/g.test(value);
+        }
+
+        if (rules.requiresSpecialChar && isValid) {
+            isValid = /[~`!#$%^&*+=\-[\]\\';,/{}|\\":<>?]/g.test(value);
+        }
+
+        if (rules.isEmail && isValid) {
+            isValid = (/@/g.test(value) && /[.]/g.test(value));
+        }
+
+        if (rules.isPasswordCheck && isValid) {
+            isValid = (value === registerForm.password.value);
+        }
+
+        return isValid;
+    }
 
     const registerInputChangedHandler = (event, formElementID) => {
 

@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import axios from '../../../axiosInstances/axios-api-setup';
 
 import { fetchUserSets } from '../../../store/actions/index';
 import { checkValidity } from '../../../utilityFunctions/modalUtility';
@@ -18,8 +18,8 @@ const CreateNewSet = props => {
     const dispatch = useDispatch();
     const onFetchUserSets = () => dispatch(fetchUserSets());
 
-    const userID = useSelector(state => {
-        return state.authReducer.user._id;
+    const user = useSelector(state => {
+        return state.authReducer.user;
     });
 
     const [createSetForm, setCreateSetForm] = useState({
@@ -90,10 +90,11 @@ const CreateNewSet = props => {
         const body = {
             setTitle: createSetForm.setTitle.value,
             setDescription: createSetForm.setDescription.value,
-            userID: userID
+            userID: user._id,
+            author: user.username
         }
 
-        axios.post('http://localHost:5000/api/cardSets', body)
+        axios.post('/api/cardSets', body)
             .then(response => {
                 console.log(response);
                 onFetchUserSets();

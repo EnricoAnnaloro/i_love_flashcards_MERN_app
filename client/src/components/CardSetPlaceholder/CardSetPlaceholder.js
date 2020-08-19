@@ -4,8 +4,6 @@ import './CardSetPlaceholder.css';
 
 const CardSetPlaceholder = props => {
 
-    console.log(props.setInfo)
-
     return (
         <div className="CardSetPlaceholder__mainDiv">
             <div className="CardSetPlaceholder__titlesDiv">
