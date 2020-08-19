@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
     DESC: Add a new card to the system, must be inside a cardSet
     ACCESS: Private (to be done)
 */
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const frontContent = req.body.frontContent;
     const backContent = req.body.backContent;
     const setID = req.body.setID;
@@ -30,15 +30,18 @@ router.post('/', (req, res) => {
         backContent: backContent
     });
 
-    newCard.save()
-        .then(async () => {
-            foundCardSet = await CardSet.findById(setID);
-            await foundCardSet.cards.push(newCard);
-            await foundCardSet.save()
-                .then(() => res.json({ msg: null }))
-                .catch(error => res.status(400).json({ msg: "There was an error while updating the cardSet!" }))
-        })
-        .catch(error => res.status(400).json({ msg: "There was an error while creating your card!" }))
+    const cardSet = await CardSet.findById(setID);
+    if (!cardSet) return res.status(404).json({ msg: "There was an error accessing database" });
+    
+    cardSet.cards.push(newCard);
+    
+    const savedCardSet = await cardSet.save();
+    if (!savedCardSet) return res.status(404).json({ msg: "There was an error accessing database" });
+
+    const savedNewCard = await newCard.save();
+    if (!savedNewCard) return res.status(404).json({ msg: "There was an error accessing database" });
+
+    return res.json({ msg: null })
 })
 
 /*

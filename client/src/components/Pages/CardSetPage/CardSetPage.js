@@ -62,9 +62,13 @@ const CardSetPage = props => {
                             <p>{activeSet.cards.length} Cards in the deck</p>
                         </div>
                     </div>
+                    <div className="CardSetPage__settingsButtons">
+                        <p className="CardSetPage__settingsButton">Study</p>
+                        <p className="CardSetPage__settingsButton">Edit</p>
+                    </div>
                     <div className="CardSetPage__cardsDiv">
-                        <div className="CardSetPage__addNewCardDiv">
-                            <FontAwesomeIcon icon={faPlusCircle} size="2x" className="CardSetPage__addNewCardButton" onClick={onAddNewCardClick} />
+                        <div className="CardSetPage__addNewCardDiv" onClick={onAddNewCardClick}>
+                            <FontAwesomeIcon icon={faPlusCircle} size="2x" className="CardSetPage__addNewCardButton" />
                         </div>
                         {cardsToShow}
                     </div>
@@ -77,7 +81,7 @@ const CardSetPage = props => {
     if (isNewCardModalOpen) {
         newCardModal = (
             <Fragment>
-                <NewCardModal onCloseModal={() => setIsNewCardModalOpen(false)} />
+                <NewCardModal onCloseModal={() => setIsNewCardModalOpen(false)} setID={activeSet._id} fetchRequest={() => onFetchActiveSet(reqURL)}/>
                 <BackdropModal backdropClicked={() => setIsNewCardModalOpen(false)}></BackdropModal>
             </Fragment>
         )

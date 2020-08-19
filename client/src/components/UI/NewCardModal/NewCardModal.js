@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import CancelButton from '../../UI/CancelButton/CancelButton';
 import FormInput from '../../UI/FormInput/FormInput';
-import { loginUser } from '../../../store/actions/index';
+import axios from '../../../axiosInstances/axios-api-setup';
 import { checkValidity } from '../../../utilityFunctions/modalUtility';
 
 import './NewCardModal.css';
@@ -85,11 +85,19 @@ const NewCardModal = props => {
         event.preventDefault();
 
         const newCardInfo = {
-            front: modalForm.front.value,
-            back: modalForm.back.value
+            frontContent: modalForm.front.value,
+            backContent: modalForm.back.value,
+            setID: props.setID
         }
 
-        // onUserLogin(newCardInfo);
+        axios.post('/api/cards', newCardInfo)
+            .then(res => {
+                props.fetchRequest();
+                props.onCloseModal();
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     const modalFormElements = [];

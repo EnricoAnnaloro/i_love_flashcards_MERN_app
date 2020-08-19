@@ -44,7 +44,7 @@
     margin: 40px auto;
     display: grid;
     grid-template-columns: repeat(4, 25%);
-    gap: 20px;
+    row-gap: 30px;
 }
 
 .CardSetPage__addNewCardDiv {
@@ -60,13 +60,50 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #457b9d;
+    cursor: pointer;
+}
+
+.CardSetPage__addNewCardDiv:hover {
+    background-color: #a8dadc;
+    transform: scale(1.1);
+}
+
+.CardSetPage__addNewCardDiv:hover .CardSetPage__addNewCardButton {
+    background-color: #a8dadc;
 }
 
 .CardSetPage__addNewCardButton {
     width: 40%;
-    cursor: pointer;
+    font-size: 40px;
     background-color: white;
     border: none;
+}
+
+.CardSetPage__settingsButtons {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 30px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CardSetPage__settingsButton {
+    font-family: inherit;
+    font-size: 18px;
+    height: 60px;
+    width: 40%;
+    margin: 10px 20px;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    box-sizing: border-box;
+    box-shadow: 3px 4px 5px 5px #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 @media(min-width: 768px) {
