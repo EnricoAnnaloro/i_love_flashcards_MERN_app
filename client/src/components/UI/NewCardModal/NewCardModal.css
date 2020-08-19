@@ -1,0 +1,68 @@
+.NewCardModal__mainDiv {
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    width: 80%;
+    height: 350px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    box-shadow: 1px 1px 1px black;
+    padding: 16px;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    transition: all 0.5s ease-out;
+}
+
+.NewCardModal__formDiv {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.NewCardModal__title {
+    font-size: 30px;
+    margin: 0;
+}
+
+.NewCardModal__formButtons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.NewCardModal__errorMessage {
+    width: 60%;
+    margin: 10px auto;
+    border-radius: 5px;
+    background-color: #f8661e;
+    text-align: center;
+}
+
+.NewCardModal__errorMessage p {
+    font-style: italic;
+    margin: 10px;
+}
+
+.NewCardModal__linkToLogin {
+    width: 80%;
+    text-align: right;
+}
+
+.NewCardModal__linkToLogin span {
+    cursor: pointer;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+@media(min-width: 768px) {
+    .NewCardModal__mainDiv {
+        width: 40%;
+    }
+}
