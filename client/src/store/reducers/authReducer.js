@@ -26,6 +26,8 @@ const reducer = (state = initialState, action) => {
         };
 
         case USER_LOADED: {
+            if (!action.payload) return state;
+            
             return {
                 ...state,
                 isAuthenticated: true,

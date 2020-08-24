@@ -7,7 +7,6 @@ import {
 
 const initialState = {
     error: null,
-    popularCards: [],
     popularSets: [],
     isFetchingLoading: false
 }
@@ -30,8 +29,7 @@ const reducer = (state = initialState, action) => {
         case SET_UP_POPULAR_ITEMS:
             return {
                 ...state,
-                popularCards: action.popularCards.cards,
-                popularSets: action.popularSets.cardSets,
+                popularSets: action.popularSets,
                 isFetchingLoading: false
             }
 

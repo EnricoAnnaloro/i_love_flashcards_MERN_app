@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const CardSet = require('../../models/cardSet.model.js');
 const User = require('../../models/user.model.js');
-const { set } = require('mongoose');
+const Card = require('../../models/card.model');
 
 /*
     API ROUTE: /api/cardSets
@@ -16,11 +16,7 @@ router.get('/', (req, res) => {
         // The content of the set is passed in the /api/cardSets/:id route
         const cardSets = [];
         for (cardSet in allSets) {
-            cardSets.push({
-                setName: allSets[cardSet].name,
-                setCardAmount: allSets[cardSet].cards.length,
-                setID: allSets[cardSet]._id
-            })
+            cardSets.push(allSets[cardSet]);
         }
 
         res.json({ cardSets: cardSets });
@@ -83,7 +79,6 @@ router.delete('/:id', (req, res) => {
 */
 router.get('/:id', (req, res) => {
     const setID = req.params.id;
-    console.log("setID", setID)
 
     CardSet.findById(setID)
         .then(foundSet => {
@@ -93,5 +88,60 @@ router.get('/:id', (req, res) => {
             console.log(err);
         })
 })
+
+/*
+    API ROUTE: /api/cardSets/:id/new-card
+    DESC: Add a single card to the set
+    ACCESS: Private (to add)
+*/
+router.post('/:id/new-card', (req, res) => {
+    const frontContent = req.body.frontContent;
+    const backContent = req.body.backContent;
+    const setID = req.params.id;
+
+    const newCard = new Card({
+        frontContent: frontContent,
+        backContent: backContent
+    });
+
+    CardSet.findById(setID)
+        .then(async foundSet => {
+            await foundSet.cards.push(newCard);
+            savedSet = await foundSet.save();
+
+            if (!savedSet) return res.status(404).json({ msg: "There was an error accessing database" });
+
+            // Successfull add
+            return res.json({ msg: null });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
+/*
+    API ROUTE: /api/cardSets/:id/:cardID
+    DESC: Remove a single card from the set
+    ACCESS: Private (to add)
+*/
+router.delete('/:id/:cardID', (req, res) => {
+    CardSet
+        .findById(req.params.id)
+        .then(async setToModify => {
+            for (index in setToModify.cards) {
+                if (setToModify.cards[index]._id == req.params.cardID) {
+                    setToModify.cards.splice(index, 1);
+                    console.log("DELETED")
+                }
+            }
+
+            savedSet = await setToModify.save();
+            if (!savedSet) return res.status(404).json({ msg: "There was an error accessing database" });
+
+            // Successfull add
+            return res.json({ msg: null });
+        })
+        .catch(error => res.status(404).json({ msg: error }));
+});
 
 module.exports = router;

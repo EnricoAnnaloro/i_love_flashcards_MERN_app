@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import CardPlaceholder from '../../CardPlaceholder/CardPlaceholder';
 import CardSetPlaceholder from '../../CardSetPlaceholder/CardSetPlaceholder';
@@ -9,7 +10,7 @@ import './ExplorePage.css';
 const ExplorePage = () => {
 
     // Component State
-    const [showSets, setShowSets] = useState(true); // showSets is true when sets are shown and false when cards are shown
+    const [showSets, setShowSets] = useState(true); // showSets is true when sets are shown and false when search is ON
 
     // Redux Import
     const dispatch = useDispatch();
@@ -35,6 +36,8 @@ const ExplorePage = () => {
         onFetchPopularItems();
     }, [onFetchPopularItems]);
 
+    const history = useHistory();
+
     let toShow = null;
     let contentDivClasses = ""
     if (isFetchingLoading) {
@@ -45,24 +48,18 @@ const ExplorePage = () => {
             contentDivClasses = "ExplorePage__ShowSetsDiv";
             toShow = popularSets.map(set => {
                 return (
-                    <CardSetPlaceholder key={set.setID} setInfo={set}></CardSetPlaceholder>
+                    <CardSetPlaceholder key={set._id} setInfo={set} onClickSet={() => history.push('/cardSets/' + set._id)}></CardSetPlaceholder>
                 )
             });
         } else {
-            contentDivClasses = "ExplorePage__ShowCardsDiv";
-            toShow = popularCards.map(card => {
-                return (
-                    <CardPlaceholder key={Math.random()} cardContent={card}></CardPlaceholder>
-                )
-            });
+            toShow = null; // TODO: ADD LOGIC FOR SEARCH SETS
         }
     }
 
     return (
         <div className="ExplorePage__MainDiv">
             <div className="ExplorePage__ButtonDiv">
-                <p onClick={() => setShowSets(false)} className={showSets ? null : "ExplorePage__ActiveButton"}>Popular Cards</p>
-                <p onClick={() => setShowSets(true)} className={showSets ? "ExplorePage__ActiveButton" : null}>Popular Sets</p>
+                {showSets ? <p>Popular Sets</p> : null}
             </div>
             <div className={contentDivClasses}>
                 {toShow}

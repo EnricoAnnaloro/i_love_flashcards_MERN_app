@@ -15,7 +15,7 @@ const UserCardSetPlaceholder = props => {
             </div>
             <div className="UserCardSetPlaceholder__infoDiv">
                 <p>{props.setInfo.name}</p>
-                <p>{props.setInfo.cards.length}</p>
+                <p>{props.setInfo.popularity}</p>
                 <p>{props.setInfo.author.authorUsername}</p>
             </div>
         </div>

@@ -4,11 +4,12 @@ UserInfo Modal - DONE
 Add username to users - DONE
 User Profile - TO FINISH
 Creating Sets - DONE
+Modify Database Design as Cards are not saved singularly - DONE
 Quick Style Fixes
-Create Sets Page
-Creating Cards
-Adding Cards to Set
-Cards ranking systems
+Create Sets Page - DONE
+Creating Cards - DONE
+Deleting Cards - DONE
+Study Page
 Sets ranking systems
 Landing page
 Implement login with google

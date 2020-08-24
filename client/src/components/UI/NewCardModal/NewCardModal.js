@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
 import CancelButton from '../../UI/CancelButton/CancelButton';
@@ -47,6 +48,9 @@ const NewCardModal = props => {
 
     const [isFormValid, setIsFormValid] = useState(false);
 
+    const history = useHistory();
+    const reqURL = '/api' + history.location.pathname + '/new-card';
+
     // Redux Import
     const dispatch = useDispatch();
     // const onUserLogin = userRegistrationInfo => dispatch(loginUser(userRegistrationInfo));
@@ -90,7 +94,9 @@ const NewCardModal = props => {
             setID: props.setID
         }
 
-        axios.post('/api/cards', newCardInfo)
+        console.log(reqURL);
+
+        axios.post(reqURL, newCardInfo)
             .then(res => {
                 props.fetchRequest();
                 props.onCloseModal();

@@ -13,7 +13,8 @@
     justify-content: space-around;
     align-items: center;
     border-bottom: 1px solid #a8dadc;
-    box-shadow: 5px 3px 5px 5px #eee;
+    box-shadow: 5px 3px 14px 6px #ccc;
+    border-radius: 16px;
 }
 
 .CardSetPage__setTitle {

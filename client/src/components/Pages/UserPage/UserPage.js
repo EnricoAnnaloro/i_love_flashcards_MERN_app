@@ -34,6 +34,14 @@ const UserPage = () => {
 
     let pageContent = null;
     if (userInfo) {
+
+        let cardsCount = 0;
+        let totalPopularity = 0;
+        for (let cardSetIndex in userSets) {
+            cardsCount = cardsCount + userSets[cardSetIndex].cards.length;
+            totalPopularity = totalPopularity + userSets[cardSetIndex].popularity;
+        }
+
         pageContent = (
             <Fragment>
                 <div className="UserPage__userInfoDiv">
@@ -46,7 +54,11 @@ const UserPage = () => {
                         </div>
                         <div>
                             <p>Cards Created</p>
-                            <p>255</p>
+                            <p>{cardsCount}</p>
+                        </div>
+                        <div>
+                            <p>Total Popularity</p>
+                            <p>{totalPopularity}</p>
                         </div>
                     </div>
                 </div>
@@ -58,7 +70,6 @@ const UserPage = () => {
                     <div className="UserPage__cardSets">
                         {userSets.map(set => {
 
-                            console.log(set._id);
                             return (
                                 <div>
                                     <UserCardSetPlaceholder key={set._id} setInfo={set} clicked={() => history.push('/cardSets/' + set._id)} />

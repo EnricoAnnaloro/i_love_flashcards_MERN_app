@@ -11,6 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 .CardSetPlaceholder__titlesDiv {
@@ -29,6 +30,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    font-weight: bold;
 }
 
 .CardSetPlaceholder__mainDiv p {
@@ -38,6 +40,9 @@
 @media(min-width: 768px) {
     .CardSetPlaceholder__mainDiv {
         flex-direction: column;
+    }
+    .CardSetPlaceholder__mainDiv:hover {
+        background-color: #a8dadc;
     }
     .CardSetPlaceholder__titlesDiv {
         flex-direction: row;

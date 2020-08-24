@@ -20,34 +20,26 @@ export const fetchPopularItemsFailed = error => {
     }
 }
 
-export const setUpPopularItems = (popularCards, popularSets) => {
+export const setUpPopularItems = popularSets => {
     return {
         type: SET_UP_POPULAR_ITEMS,
-        popularCards: popularCards,
         popularSets: popularSets
     }
 }
 
 export const fetchPopularItems = () => dispatch => {
     dispatch(fetchPopularItemsStart());
-    const cardsApiURL = "/api/cards";
     const cardSetsApiURL = "/api/cardSets";
 
-    axios.get(cardsApiURL)
-        .then(cardRes => {
-            const cardsApiResponse = cardRes;
+    axios.get(cardSetsApiURL)
+        .then(setsRes => {
+            const cardSetsApiResponse = setsRes;
 
-            axios.get(cardSetsApiURL)
-                .then(setsRes => {
-                    const cardSetsApiResponse = setsRes;
+            console.log("fetchPopularItems", cardSetsApiResponse.data.cardSets);
 
-                    // Add here the logic for displaying only the first 100 most popular ones in order
+            // TODO - Add here the logic for displaying only the first 100 most popular ones in order
 
-                    dispatch(setUpPopularItems(cardsApiResponse.data, cardSetsApiResponse.data));
-                })
-                .catch(error => {
-                    dispatch(fetchPopularItemsFailed(error));
-                })
+            dispatch(setUpPopularItems(cardSetsApiResponse.data.cardSets));
         })
         .catch(error => {
             dispatch(fetchPopularItemsFailed(error));
