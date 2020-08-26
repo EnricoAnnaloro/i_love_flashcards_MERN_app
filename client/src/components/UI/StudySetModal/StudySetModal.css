@@ -1,0 +1,49 @@
+.StudySetModal__mainDiv {
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    width: 80%;
+    height: 450px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    box-shadow: 1px 1px 1px black;
+    padding: 0;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    transition: all 0.5s ease-out;
+}
+
+.StudySetModal__card{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.StudySetModal__navigationButton {
+    width: 15%;
+    height: 100%;
+    background-color: inherit;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.StudySetModal__navigationButton:hover {
+    background-color: #eee;
+}
+
+.StudySetModal____buttonIcon:hover {
+    background-color: #eee;
+}

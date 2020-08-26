@@ -9,6 +9,7 @@ import { fetchActiveSet } from '../../../store/actions/index';
 import CardPlaceholder from '../../CardPlaceholder/CardPlaceholder';
 import NewCardModal from '../../UI/NewCardModal/NewCardModal';
 import BackdropModal from '../../UI/BackdropModal/BackdropModal';
+import StudySetModal from '../../UI/StudySetModal/StudySetModal';
 import './CardSetPage.css'
 
 const CardSetPage = props => {
@@ -117,10 +118,21 @@ const CardSetPage = props => {
         )
     }
 
+    let studySetModal = null;
+    if (isInStudyMode) {
+        studySetModal = (
+            <Fragment>
+                <StudySetModal cards={activeSet.cards}/>
+                <BackdropModal backdropClicked={() => setIsInStudyMode(false)}></BackdropModal>
+            </Fragment>
+        )
+    }
+
     return (
         <div className="CardSetPage__mainDiv">
             {content}
             {newCardModal}
+            {studySetModal}
         </div>
     );
 }
