@@ -6,6 +6,7 @@ import LandingPage from './components/Pages/LandingPage/LandingPage';
 import ExplorePage from './components/Pages/ExplorePage/ExplorePage';
 import UserPage from './components/Pages/UserPage/UserPage';
 import CardSetPage from './components/Pages/CardSetPage/CardSetPage';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
 import store from './store/store';
@@ -26,6 +27,7 @@ function App() {
         <Route path="/explore"><ExplorePage /></Route>
         <Route path="/" exact><LandingPage /></Route>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

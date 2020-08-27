@@ -1,4 +1,153 @@
-.landingPage__mainDiv{
+.landingPage__mainDiv {
+    overflow: hidden;
+}
+
+.landingPage__Jumbotron {
+    width: 100%;
+    height: 600px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.landingPage__DesktopImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+    /* opacity: 60%; */
+    z-index: -20;
+    display: none;
+}
+
+.landingPage__MobileImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+    /* opacity: 60%; */
+    z-index: -20;
+}
+
+.landingPage__JumbotronLayover {
+    width: 100%;
+    height: inherit;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 0;
+    position: absolute;
+}
+
+.landingPage__JumbotronTitle {
+    z-index: 1;
+    width: 80%;
+    top: 72px;
+    left: 0;
+    right: 0;
+    margin: 15px auto;
+    font-size: 40px;
+    position: absolute;
     text-align: center;
-    color: blueviolet;
+}
+
+.landingPage__JumbotronTitle h1 {
+    margin: 8px 0;
+    font-size: 50px;
+}
+
+.landingPage__JumbotronTitle h4 {
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+.landingPage__JumbotronTitle p {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.landingPage__exploreButton {
+    width: 50%;
+    height: 50px;
+    border-radius: 16px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 5px 10px 5px rgb(167, 167, 167);
+    font-weight: bold;
+    background-color: #a8dadc;
+}
+
+.landingPage__container {
+    padding: 15px 0;
+    padding-bottom: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #a8dadc;
+}
+
+.landingPage__InstructionsHidden {
+    opacity: 0;
+}
+
+.landingPage__InstructionsRight {
+    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    animation: slideRightInstructions 0.7s ease-in;
+}
+
+.landingPage__InstructionsLeft {
+    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    animation: slideLeftInstructions 0.7s ease-in;
+}
+
+.landingPage__InstructionsRight p {
+    margin: 5px auto;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.landingPage__InstructionsLeft p {
+    margin: 5px auto;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+@keyframes slideLeftInstructions {
+    0% {
+        transform: translateX(300px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideRightInstructions {
+    0% {
+        transform: translateX(-300px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media(min-width: 768px) {
+    .landingPage__Jumbotron {
+        height: 600px;
+    }
+    .landingPage__JumbotronTitle h1 {
+        font-size: 60px;
+    }
 }
