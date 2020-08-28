@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import SubmitButton from '../../UI/SubmitButton/SubmitButton';
@@ -50,10 +49,6 @@ const NewCardModal = props => {
 
     const history = useHistory();
     const reqURL = '/api' + history.location.pathname + '/new-card';
-
-    // Redux Import
-    const dispatch = useDispatch();
-    // const onUserLogin = userRegistrationInfo => dispatch(loginUser(userRegistrationInfo));
 
     const loginInputChangedHandler = (event, formElementID) => {
 

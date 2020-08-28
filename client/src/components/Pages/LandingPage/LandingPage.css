@@ -31,7 +31,7 @@
 .landingPage__JumbotronLayover {
     width: 100%;
     height: inherit;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.8);
     z-index: 0;
     position: absolute;
 }
@@ -145,7 +145,7 @@
 
 @media(min-width: 768px) {
     .landingPage__Jumbotron {
-        height: 600px;
+        height: 570px;
     }
     .landingPage__JumbotronTitle h1 {
         font-size: 60px;

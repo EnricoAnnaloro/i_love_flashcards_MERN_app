@@ -3,9 +3,6 @@ import React from 'react';
 import './UserCardSetPlaceholder.css';
 
 const UserCardSetPlaceholder = props => {
-
-    console.log(props.setInfo)
-
     return (
         <div className="UserCardSetPlaceholder__mainDiv" onClick={props.clicked}>
             <div className="UserCardSetPlaceholder__titlesDiv">

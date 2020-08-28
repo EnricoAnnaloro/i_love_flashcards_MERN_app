@@ -1,4 +1,5 @@
 .ExplorePage__MainDiv {
+    min-height: 700px;
     padding: 10px 0;
     text-align: center;
     color: black;

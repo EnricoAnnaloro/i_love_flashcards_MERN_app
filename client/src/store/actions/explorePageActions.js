@@ -1,9 +1,7 @@
 import axios from '../../axiosInstances/axios-api-setup';
 import {
-    FETCH_POPULAR_ITEMS,
     FETCH_POPULAR_ITEMS_START,
     FETCH_POPULAR_ITEMS_FAIL,
-    FETCH_POPULAR_ITEMS_SUCCESS,
     SET_UP_POPULAR_ITEMS
 } from './actionTypes';
 

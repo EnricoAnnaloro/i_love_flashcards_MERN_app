@@ -4,10 +4,12 @@
   "description": "A simple flashcard MERN app for creating, storing and reviewing flashcards",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "cd ./client && npm run start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -28,5 +30,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.28",
     "react-use": "^15.3.3"
+  },
+  "engines": {
+    "node": "12.16.3"
   }
 }

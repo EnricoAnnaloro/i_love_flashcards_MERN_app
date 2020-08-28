@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useHistory} from 'react-router-dom'
 import { useWindowScroll } from 'react-use';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSdCard, faCopy, faCodeBranch } from '@fortawesome/free-solid-svg-icons';
@@ -9,22 +10,23 @@ import './LandingPage.css'
 
 const LandingPage = () => {
 
+    const history = useHistory();
     const { y: pageYOffset } = useWindowScroll();
     const [instructionsClassesLeft, setInstructionsClassesLeft] = useState("landingPage__InstructionsHidden");
     const [instructionsClassesRight, setInstructionsClassesRight] = useState("landingPage__InstructionsHidden");
 
     useEffect(() => {
-        window.addEventListener("scroll", e => {
-            if (window.screen.availWidth < 768) {
+        if (window.screen.availWidth < 768) {
+            window.addEventListener("scroll", e => {
                 if (window.scrollY > 100) {
                     setInstructionsClassesRight("landingPage__InstructionsRight");
                     setInstructionsClassesLeft("landingPage__InstructionsLeft");
                 }
-            } else {
+            });
+        } else {
                 setInstructionsClassesRight("landingPage__InstructionsRight");
                 setInstructionsClassesLeft("landingPage__InstructionsLeft");
-            }
-        });
+        }
     }, []);
 
     return (
@@ -36,7 +38,7 @@ const LandingPage = () => {
                     <h1>Improve</h1>
                     <hr></hr>
                     <h4>The best site for learning with flashcards</h4>
-                    <button className="landingPage__exploreButton">EXPLORE</button>
+                    <button className="landingPage__exploreButton" onClick={() => history.push('/explore')}>EXPLORE</button>
                     <p>Not a user? Log in to unleash the whole potential</p>
                 </div>
                 <div className="landingPage__JumbotronLayover"></div>

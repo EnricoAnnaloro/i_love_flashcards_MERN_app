@@ -23,18 +23,23 @@ const UserInfoModal = props => {
         props.toggleUserInfoModalHandler();
     }
 
+    let userPageLink = null;
+    if (history.location.pathname.substring(0, 5) !== '/user') {
+        userPageLink = <div className="UserInfoModal__toUserPageDiv" onClick={moveToUserPage}>
+            <p>Your Page</p>
+        </div>
+    }
+
     return (
         <Fragment>
             <div className="UserInfoModal__mainDiv">
                 <p className="UserInfoModal__greeting">Welcome {userName}!</p>
-                <div className="UserInfoModal__toUserPageDiv" onClick={moveToUserPage}>
-                    <p>Your Page</p>
-                </div>
+                {userPageLink}
                 <div className="UserInfoModal__logoutDiv" onClick={props.onLogoutHandler}>
-                    <p>Logout<FontAwesomeIcon icon={faSignOutAlt} className="Navbar__icon"/></p>
+                    <p>Logout<FontAwesomeIcon icon={faSignOutAlt} className="Navbar__icon" /></p>
                 </div>
             </div>
-            <BackdropModal backdropClicked={props.toggleUserInfoModalHandler}/>
+            <BackdropModal backdropClicked={props.toggleUserInfoModalHandler} />
         </Fragment>
     );
 }

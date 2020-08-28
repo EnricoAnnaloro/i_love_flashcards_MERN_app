@@ -29,7 +29,7 @@
     background-color: orange;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 768px) {
     .MenuIcon {
         display: none;
     }

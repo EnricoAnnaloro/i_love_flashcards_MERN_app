@@ -1,16 +1,9 @@
 import {
     FETCHING_USER_SETS_START,
     FETCHING_USER_SETS_SUCCESS,
-    FETCHING_USER_SETS_FAIL,
-    CREATING_USER_SET_START,
-    CREATING_USER_SET_SUCCESS,
-    CREATING_USER_SET_FAIL,
     FETCHING_ACTIVE_SET_START,
-    FETCHING_ACTIVE_SET_SUCCESS,
-    FETCHING_ACTIVE_SET_FAIL
+    FETCHING_ACTIVE_SET_SUCCESS
 } from '../actions/actionTypes';
-
-import { returnErrors } from './index';
 
 const initialState = {
     isCreatingNewSet: false,

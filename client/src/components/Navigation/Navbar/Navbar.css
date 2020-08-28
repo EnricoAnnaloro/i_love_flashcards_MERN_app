@@ -10,10 +10,11 @@
     display: flex;
     justify-content: space-around;
     background-color: #a8dadc;
+    border-bottom: 1px solid #457b9d;
 }
 
 .Navbar__title {
-    font-size: 25px;    
+    font-size: 25px;
     display: flex;
     align-items: center;
 }
@@ -92,7 +93,7 @@
         align-items: center;
         justify-content: center;
     }
-    .Navbar__titleDiv{
+    .Navbar__titleDiv {
         width: 50%;
     }
 }

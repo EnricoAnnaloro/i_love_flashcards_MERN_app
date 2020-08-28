@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import CardPlaceholder from '../../CardPlaceholder/CardPlaceholder';
 import CardSetPlaceholder from '../../CardSetPlaceholder/CardSetPlaceholder';
 import { fetchPopularItems } from '../../../store/actions/index';
 import './ExplorePage.css';

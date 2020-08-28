@@ -13,7 +13,7 @@ import './UserPage.css';
 const UserPage = () => {
 
     // State definition
-    const [shouldDisplaySetModal, setshouldDisplaySetModal] = useState(false); 
+    const [shouldDisplaySetModal, setshouldDisplaySetModal] = useState(false);
 
     // Redux Import 
     const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const UserPage = () => {
             <Fragment>
                 <div className="UserPage__userInfoDiv">
                     <div className="UserPage__userImage"><FontAwesomeIcon icon={faUser} size="2x" className="Navbar__icon" /></div>
-                    <p className="UserPage__userInfo">{userInfo.username}</p>                    
+                    <p className="UserPage__userInfo">{userInfo.username}</p>
                     <div className="UserPage__stats">
                         <div>
                             <p>Card Sets</p>
@@ -69,10 +69,9 @@ const UserPage = () => {
                     </div>
                     <div className="UserPage__cardSets">
                         {userSets.map(set => {
-
                             return (
-                                <div>
-                                    <UserCardSetPlaceholder key={set._id} setInfo={set} clicked={() => history.push('/cardSets/' + set._id)} />
+                                <div key={set._id}>
+                                    <UserCardSetPlaceholder setInfo={set} clicked={() => history.push('/cardSets/' + set._id)} />
                                 </div>
                             )
                         })}
@@ -80,12 +79,12 @@ const UserPage = () => {
                 </div>
             </Fragment>
         )
-    } 
+    }
 
     return (
         <div className="UserPage__mainDiv">
             {pageContent}
-            {shouldDisplaySetModal ? <CreateNewSetModal onCloseModal={() => setshouldDisplaySetModal(false)}/> : null}
+            {shouldDisplaySetModal ? <CreateNewSetModal onCloseModal={() => setshouldDisplaySetModal(false)} /> : null}
         </div>
     );
 }
