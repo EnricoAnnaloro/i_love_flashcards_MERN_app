@@ -36,7 +36,8 @@ const Navbar = props => {
     }
 
     const onLogoutHandler = () => {
-        setIsDisplayUserInfoModal(!isDisplayUserInfoModal);
+        setIsDisplayUserInfoModal(false);
+        setIsDisplaySideDrawer(false);
         onLogout();
         history.push('/');
     }

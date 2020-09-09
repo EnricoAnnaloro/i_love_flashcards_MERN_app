@@ -14,12 +14,12 @@ const UserInfoModal = props => {
     const history = useHistory();
 
     // Redux State
-    const userName = useSelector(state => {
-        return state.authReducer.user.username
+    const user = useSelector(state => {
+        return state.authReducer.user
     });
 
     const moveToUserPage = () => {
-        history.push(`/user/${userName}`);
+        history.push(`/user/${user.username}`);
         props.toggleUserInfoModalHandler();
     }
 
@@ -33,7 +33,7 @@ const UserInfoModal = props => {
     return (
         <Fragment>
             <div className="UserInfoModal__mainDiv">
-                <p className="UserInfoModal__greeting">Welcome {userName}!</p>
+                {user ? <p className="UserInfoModal__greeting">Welcome {user.username}!</p> : null}
                 {userPageLink}
                 <div className="UserInfoModal__logoutDiv" onClick={props.onLogoutHandler}>
                     <p>Logout<FontAwesomeIcon icon={faSignOutAlt} className="Navbar__icon" /></p>

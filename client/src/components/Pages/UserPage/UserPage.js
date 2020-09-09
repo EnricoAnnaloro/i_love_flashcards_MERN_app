@@ -12,81 +12,99 @@ import './UserPage.css';
 
 const UserPage = () => {
 
-    // State definition
-    const [shouldDisplaySetModal, setshouldDisplaySetModal] = useState(false);
+        // State definition
+        const [shouldDisplaySetModal, setshouldDisplaySetModal] = useState(false);
 
-    // Redux Import 
-    const dispatch = useDispatch();
+        // Redux Import 
+        const dispatch = useDispatch();
 
-    const userInfo = useSelector(state => {
-        return state.authReducer.user
-    });
+        const userInfo = useSelector(state => {
+            return state.authReducer.user
+        });
 
-    const userSets = useSelector(state => {
-        return state.cardSetReducer.userSets
-    });
+        const userSets = useSelector(state => {
+            return state.cardSetReducer.userSets
+        });
 
-    useEffect(() => {
-        store.dispatch(loadUser());
-    }, []);
+        useEffect(() => {
+            store.dispatch(loadUser());
+        }, []);
 
-    const history = useHistory();
+        const history = useHistory();
 
-    let pageContent = null;
-    if (userInfo) {
+        let pageContent = null;
+        if (userInfo) {
 
-        let cardsCount = 0;
-        let totalPopularity = 0;
-        for (let cardSetIndex in userSets) {
-            cardsCount = cardsCount + userSets[cardSetIndex].cards.length;
-            totalPopularity = totalPopularity + userSets[cardSetIndex].popularity;
+            let cardsCount = 0;
+            let totalPopularity = 0;
+            for (let cardSetIndex in userSets) {
+                cardsCount = cardsCount + userSets[cardSetIndex].cards.length;
+                totalPopularity = totalPopularity + userSets[cardSetIndex].popularity;
+            }
+
+            pageContent = ( <
+                Fragment >
+                <
+                div className = "UserPage__userInfoDiv" >
+                <
+                div className = "UserPage__userImage" > < FontAwesomeIcon icon = { faUser }
+                size = "2x"
+                className = "Navbar__icon" / > < /div> <
+                p className = "UserPage__userInfo" > { userInfo.username } < /p> <
+                div className = "UserPage__stats" >
+                <
+                div >
+                <
+                p > Card Sets < /p> <
+                p > { userInfo ? userInfo.cardSets.length : null } < /p> <
+                /div> <
+                div >
+                <
+                p > Cards Created < /p> <
+                p > { cardsCount } < /p> <
+                /div> <
+                div >
+                <
+                p > Total Popularity < /p> <
+                p > { totalPopularity } < /p> <
+                /div> <
+                /div> <
+                /div> <
+                div className = "UserPage__contentDiv" >
+                <
+                h2 > Your Collections < /h2> <
+                div className = "UserPage__createSetButton"
+                onClick = {
+                    () => setshouldDisplaySetModal(true) } >
+                <
+                p > { userSets.length === 0 ? "Create your first set" : "Create a new set" } < /p> <
+                /div> <
+                div className = "UserPage__cardSets" > {
+                    userSets.map(set => {
+                        return ( <
+                            div key = {set._id } >
+                            <
+                            UserCardSetPlaceholder setInfo = {set }
+                            clicked = {
+                                () => history.push('/cardSets/' + set._id) }
+                            /> <
+                            /div>
+                        )
+                    })
+                } <
+                /div> <
+                /div> <
+                /Fragment>
+            )
         }
 
-        pageContent = (
-            <Fragment>
-                <div className="UserPage__userInfoDiv">
-                    <div className="UserPage__userImage"><FontAwesomeIcon icon={faUser} size="2x" className="Navbar__icon" /></div>
-                    <p className="UserPage__userInfo">{userInfo.username}</p>
-                    <div className="UserPage__stats">
-                        <div>
-                            <p>Card Sets</p>
-                            <p>{userInfo ? userInfo.cardSets.length : null}</p>
-                        </div>
-                        <div>
-                            <p>Cards Created</p>
-                            <p>{cardsCount}</p>
-                        </div>
-                        <div>
-                            <p>Total Popularity</p>
-                            <p>{totalPopularity}</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="UserPage__contentDiv">
-                    <h2>Your Collections</h2>
-                    <div className="UserPage__createSetButton" onClick={() => setshouldDisplaySetModal(true)}>
-                        <p>{userSets.length === 0 ? "Create your first set" : "Create a new set"}</p>
-                    </div>
-                    <div className="UserPage__cardSets">
-                        {userSets.map(set => {
-                            return (
-                                <div key={set._id}>
-                                    <UserCardSetPlaceholder setInfo={set} clicked={() => history.push('/cardSets/' + set._id)} />
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
-            </Fragment>
-        )
-    }
+        return ( <
+            div className = "UserPage__mainDiv" > { pageContent } {
+                shouldDisplaySetModal ? < CreateNewSetModal onCloseModal = {
+                    () => setshouldDisplaySetModal(false) }
+                /> : null} <
+                /div>
+            );
+        }
 
-    return (
-        <div className="UserPage__mainDiv">
-            {pageContent}
-            {shouldDisplaySetModal ? <CreateNewSetModal onCloseModal={() => setshouldDisplaySetModal(false)} /> : null}
-        </div>
-    );
-}
-
-export default UserPage;
+        export default UserPage;

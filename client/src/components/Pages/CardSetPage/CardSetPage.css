@@ -28,12 +28,17 @@
 .CardSetPage__setAdditinalInfo {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
 
 .CardSetPage__setAdditinalInfo__Author {
     text-align: center;
+}
+
+.CardSetPage__setAdditinalInfo__Author p{
+    margin: 0;
 }
 
 .CardSetPage__setAdditinalInfo__Description {
@@ -45,7 +50,7 @@
     width: 80%;
     margin: 40px auto;
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(1, 100%);
     row-gap: 30px;
 }
 
@@ -112,11 +117,17 @@
     .CardSetPage__addNewCardDiv {
         width: 60%;
     }
+    .CardSetPage__cardsDiv {
+        grid-template-columns: repeat(2, 50%);
+    }
 }
 
 @media(min-width: 1024px) {
     .CardSetPage__addNewCardDiv {
         width: 80%;
         margin: 0 auto;
+    }
+    .CardSetPage__cardsDiv {
+        grid-template-columns: repeat(4, 25%);
     }
 }

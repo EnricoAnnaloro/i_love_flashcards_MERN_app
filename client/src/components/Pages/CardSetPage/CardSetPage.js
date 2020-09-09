@@ -84,10 +84,10 @@ const CardSetPage = props => {
                         <div className="CardSetPage__setAdditinalInfo">
                             <div className="CardSetPage__setAdditinalInfo__Author">
                                 <p>Made by</p>
-                                <p>{activeSet.author.authorUsername}</p>
+                                <p style={{fontWeight: 'bold'}}>{activeSet.author.authorUsername}</p>
                             </div>
                             <p className="CardSetPage__setAdditinalInfo__Description">{activeSet.description}</p>
-                            <p>{activeSet.cards.length} Cards in the deck</p>
+                            <p>Cards in the deck: {activeSet.cards.length} </p>
                         </div>
                     </div>
                     <div className="CardSetPage__settingsButtons">
