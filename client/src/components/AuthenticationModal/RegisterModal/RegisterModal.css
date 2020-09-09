@@ -3,14 +3,14 @@
     z-index: 500;
     background-color: white;
     width: 80%;
-    height: 600px;
+    height: 90%;
     border: 1px solid #ccc;
     border-radius: 30px;
     box-shadow: 1px 1px 1px black;
     padding: 16px;
-    top: 20%;
     left: 50%;
-    transform: translate(-50%, 0);
+    top: 50%;
+    transform: translate(-50%, -50%);
     color: black;
     display: flex;
     flex-direction: column;
@@ -64,5 +64,9 @@
 @media(min-width: 768px) {
     .RegisterModal__mainDiv {
         width: 40%;
+    }
+
+    .RegisterModal__mainDiv {
+        height: 60%;
     }
 }
